@@ -1,7 +1,5 @@
 package core.basesyntax;
 
-import java.util.ArrayList;
-
 public class FindNumbers {
 
     /**
@@ -16,16 +14,14 @@ public class FindNumbers {
      */
     public int[] getAllNumbers(String text) {
 
-        ArrayList<Integer> multiInt = new ArrayList<Integer>();
-        for (Integer i = -14; i <= 147; i++) {
-            if (text.indexOf(i) >= 0) {
-                multiInt.add(i * 2);
-            }
+        String textCleaned = text.replaceAll("[^-0-9]+", " ");
+        String[] textSplited = textCleaned.trim().split(" ");
+        int[] multiInt = new int[textSplited.length];
+
+        for (int i = 0; i < textSplited.length; i++) {
+            Integer number = Integer.parseInt(textSplited[i]);
+            multiInt[i] = (number * 2);
         }
-        int[] returnedMultiInt = new int[multiInt.size()];
-        for (int i = 0; i < multiInt.size(); i++) {
-            returnedMultiInt[i] = multiInt.get(i);
-        }
-        return returnedMultiInt;
+        return multiInt;
     }
 }
